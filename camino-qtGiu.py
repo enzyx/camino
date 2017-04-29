@@ -7,8 +7,8 @@ from PyQt4 import QtCore
 from serial import Serial
 
 from input_parser import InputParser
-import design_overlay
-import settings_view
+import main_window_overlay
+
 from camino_108 import Camino
 from settings import Settings
 import signal
@@ -33,7 +33,7 @@ class SerialListener(QtCore.QThread):
     def quit(self):
         self.request_stop = True
 
-class CaminoProgrammer(QtGui.QMainWindow, design_overlay.UiOverlayWindow):
+class CaminoProgrammer(QtGui.QMainWindow, main_window_overlay.UiOverlayWindow):
     serialListener = None
     serialDevice = None
     def __init__(self, parent=None):

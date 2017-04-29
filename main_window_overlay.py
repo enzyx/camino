@@ -2,14 +2,14 @@
 
 from PyQt4 import QtCore, QtGui
 
-import design
+import main_window
 from gps_bar_plot import GPSBarPlot
 from gps_satellite_plot import GPSSatellitePlot
 from combo_box_ship_type import QComboBoxShipType
 
 from about import About
 
-class UiOverlayWindow(design.Ui_MainWindow):
+class UiOverlayWindow(main_window.Ui_MainWindow):
     def __init__(self, parent=None):
         super(UiOverlayWindow, self).__init__(parent)
 
@@ -36,7 +36,7 @@ class UiOverlayWindow(design.Ui_MainWindow):
         self.statusbar.addPermanentWidget(self.label_connection_status)
         self.statusbar.addPermanentWidget(self.label_connection_status_led)
         self.setStatusDisconnected()
-        
+
         # About Dialog
         self.aboutWindow = About(self)
         self.actionAbout.triggered.connect(self.aboutWindow.show)

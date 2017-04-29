@@ -1,5 +1,5 @@
 from PyQt4 import QtGui,QtCore
-import settings_view
+import settings_window
 
 class Units():
     units = 0
@@ -25,7 +25,7 @@ class Units():
         return "Imperial"
 
 
-class Settings(QtGui.QMainWindow, settings_view.Ui_MainWindow):
+class Settings(QtGui.QMainWindow, settings_window.Ui_MainWindow):
     serial_port = '/dev/ttyACM0'
     units = Units()
     def __init__(self, parent=None):
