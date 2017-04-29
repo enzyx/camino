@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>665</width>
+    <height>494</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Camino GUI</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>res/blue-sailing-boat-water.png</normaloff>res/blue-sailing-boat-water.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabShipData">
+       <attribute name="title">
+        <string>&amp;Ship</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButtonReadDevice">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>320</y>
+          <width>111</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&amp;Read Device</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>61</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ship Data</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButtonConfigureDevice">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>320</y>
+          <width>111</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&amp;Configure Device</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>331</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <widget class="QWidget" name="formLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>309</width>
+           <height>141</height>
+          </rect>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <property name="horizontalSpacing">
+           <number>8</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Ship Name</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditShipName"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Call Sign</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEditCallSign"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>MMSI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditMMSI">
+            <property name="cursor">
+             <cursorShape>IBeamCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Maritime Mobile Service Identity (9 Digits)</string>
+            </property>
+            <property name="inputMethodHints">
+             <set>Qt::ImhNone</set>
+            </property>
+            <property name="inputMask">
+             <string>999999999; </string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="maxLength">
+             <number>9</number>
+            </property>
+            <property name="dragEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+            <property name="cursorMoveStyle">
+             <enum>Qt::LogicalMoveStyle</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Ship Type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBoxShipType">
+            <item>
+             <property name="text">
+              <string>20 = WIG</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30 = Vessel-Fishing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>31 = Vessel-Towing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>32 = Vessel-Tow, L&gt;200m, W&gt;25m</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>33 = Vessel-Dredge, Underwater OP</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>34 = Vessel-Diving OP</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>35 = Vessel-Military OP</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>36 = Vessel-Sailing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>37 = Vessel-Pleasure Craft</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>40 = HSC</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>50 = Pilot Vessel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>51 = Search And Rescue Vessel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>52 = Tug</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>53 = Port tender</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>54 = Anti-Pollution Vessel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>55 = Law Enforcement Vessel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>58 = Medical Transport</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>59 = Resolution 18(Mob-83)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>60 = Passenger Ship</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>70 = Cargo Ship</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>80 = Tanker</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>10</y>
+          <width>111</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ship Dimensions</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>30</y>
+          <width>271</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>110</y>
+           <width>56</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>(0-511m)</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>330</y>
+           <width>56</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>(0-63m)</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>230</y>
+           <width>56</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>(0-511m)</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBoxDimB">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>200</y>
+           <width>48</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>511</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBoxDimC">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>300</y>
+           <width>48</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>63</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>330</y>
+           <width>56</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>(0-63m)</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>201</width>
+           <height>301</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>res/ship.svgz</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBoxDimD">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>300</y>
+           <width>48</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>63</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBoxDimA">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>80</y>
+           <width>48</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>511</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>150</y>
+           <width>81</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>GPS Receiver</string>
+         </property>
+        </widget>
+        <zorder>label_5</zorder>
+        <zorder>label_9</zorder>
+        <zorder>label_6</zorder>
+        <zorder>label_8</zorder>
+        <zorder>spinBoxDimB</zorder>
+        <zorder>spinBoxDimC</zorder>
+        <zorder>label_7</zorder>
+        <zorder>spinBoxDimD</zorder>
+        <zorder>spinBoxDimA</zorder>
+        <zorder>label_10</zorder>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabGPS">
+       <attribute name="title">
+        <string>&amp;GPS</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tabLog">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>&amp;Log</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPlainTextEdit" name="textEditLog">
+          <property name="maximumBlockCount">
+           <number>10000</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>665</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>&amp;Disconnect</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
