@@ -37,7 +37,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabShipData">
        <attribute name="title">
@@ -185,113 +185,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="comboBoxShipType">
-            <item>
-             <property name="text">
-              <string>20 = WIG</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>30 = Vessel-Fishing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>31 = Vessel-Towing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>32 = Vessel-Tow, L&gt;200m, W&gt;25m</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>33 = Vessel-Dredge, Underwater OP</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>34 = Vessel-Diving OP</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>35 = Vessel-Military OP</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>36 = Vessel-Sailing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>37 = Vessel-Pleasure Craft</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>40 = HSC</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>50 = Pilot Vessel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>51 = Search And Rescue Vessel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>52 = Tug</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>53 = Port tender</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>54 = Anti-Pollution Vessel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>55 = Law Enforcement Vessel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>58 = Medical Transport</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>59 = Resolution 18(Mob-83)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>60 = Passenger Ship</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>70 = Cargo Ship</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>80 = Tanker</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="QComboBoxShipType" name="comboBoxShipType"/>
           </item>
          </layout>
         </widget>
@@ -497,7 +391,7 @@
           <x>40</x>
           <y>40</y>
           <width>281</width>
-          <height>131</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_2">
@@ -512,7 +406,11 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEditLatitude"/>
+          <widget class="QLineEdit" name="lineEditLatitude">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_12">
@@ -526,6 +424,9 @@
            <property name="text">
             <string/>
            </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item row="2" column="0">
@@ -536,12 +437,26 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEditAltitude"/>
+          <widget class="QLineEdit" name="lineEditAltitude">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_14">
+           <property name="toolTip">
+            <string>Speed over ground</string>
+           </property>
            <property name="text">
-            <string>GPS Fix:</string>
+            <string>SOG:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEditSpeedOverGround">
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -562,7 +477,6 @@
           <verstretch>1</verstretch>
          </sizepolicy>
         </property>
-        <zorder>widgetGPSData</zorder>
        </widget>
        <widget class="QWidget" name="widgetGPSSatellitePlot" native="true">
         <property name="geometry">
@@ -680,6 +594,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QComboBoxShipType</class>
+   <extends>QComboBox</extends>
+   <header>combo_box_ship_type</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

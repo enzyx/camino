@@ -76,7 +76,7 @@ class CaminoProgrammer(QtGui.QMainWindow, design_overlay.UiOverlayWindow):
         print self.lineEditShipName.text()
         print self.lineEditCallSign.text()
         print self.lineEditMMSI.text()
-        print int(self.comboBoxShipType.currentText().split('=')[0])
+        print self.comboBoxShipType.getCurrentShipType().getNumber()
         print self.spinBoxDimA.text(), self.spinBoxDimB.text(), \
               self.spinBoxDimC.text(),self.spinBoxDimD.text()
 

@@ -1,4 +1,4 @@
-import gpgsv, gpgga
+import gpgsv, gpgga, gpvtg
 
 class InputParser(object):
     def __init__(self, QMainWindow):
@@ -6,6 +6,7 @@ class InputParser(object):
         self.gpgsvCollector = gpgsv.GPGSVCollector()
         self.gpgsvMessage = gpgsv.GPGSVMessage()
         self.gpggaMessage = gpgga.GPGGAMessage()
+        self.gpvtgMessage = gpvtg.GPVTGMessage()
 
     def update(self, data):
         self.QMainWindow.textEditLog.appendPlainText(data.strip())
@@ -17,6 +18,7 @@ class InputParser(object):
             self.QMainWindow.lineEditCallSign.setText(data.strip()[16:-1])
         if "(05) Ship Cargo Type:(" in data:
             shipType = data.split('(')[2].split(')')[0]
+            self.QMainWindow.comboBoxShipType.setShipTypeByNumber(int(shipType))
             self.QMainWindow.spinBoxDimA.setValue(int(data.split('(')[3].split(')')[0]))
             self.QMainWindow.spinBoxDimB.setValue(int(data.split('(')[4].split(')')[0]))
             self.QMainWindow.spinBoxDimC.setValue(int(data.split('(')[5].split(')')[0]))
@@ -34,3 +36,7 @@ class InputParser(object):
             self.QMainWindow.updateGPSData(self.gpggaMessage)
             # print self.gpggaMessage.getPositionString()
             # print self.gpggaMessage.getAltitudeString()
+
+        if "$GPVTG," in data:
+            self.gpvtgMessage.parseGPVTGMessage(data)
+            self.QMainWindow.updateSpeedOverGround(self.gpvtgMessage)
