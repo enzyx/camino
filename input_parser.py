@@ -31,5 +31,6 @@ class InputParser(object):
 
         if "$GPGGA," in data:
             self.gpggaMessage.parseGPGGAMessage(data)
-            print self.gpggaMessage.getPositionString()
-            print self.gpggaMessage.getAltitudeString()
+            self.QMainWindow.updateGPSData(self.gpggaMessage)
+            # print self.gpggaMessage.getPositionString()
+            # print self.gpggaMessage.getAltitudeString()

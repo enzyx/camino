@@ -48,7 +48,7 @@ class GPGGAMessage(object):
         return self.fixQuality == 1 or self.fixQuality == 2
 
     def formatLatLong(self, degree, minute, direction):
-        return "{degree:}°{minute:}'{second:}''{direction:s}".format(degree=int(degree),
+        return u"{degree:}°{minute:}'{second:}''{direction:s}".format(degree=int(degree),
                                                            minute=int(float(minute)),
                                                            second=int(round(float(minute) % 1 * 60)),
                                                            direction=direction)
