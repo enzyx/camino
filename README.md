@@ -1,32 +1,33 @@
 ## Camino gui
-This program provides a useful tool to configure and control the AIS transponder
-devices from the AMEC Camino (R) series. The program provides a convenient tool
-to program the ship data into the device (name, call sign, dimensions, ...).
-Additionally the NMEA log sent by the device can be monitored and the GPS status
-information is displayed in a nice widget. To program is written and tested to
-run on a Linux platform but may function as well on other operating systems.
+This program provides a graphical user interface to configure and control the AIS
+transponder devices from the AMEC Camino (R) series which are typically found on
+sailing yachts.
+The software allows to program the ship data into the AIS transponder device (name, call sign, dimensions, ...).
+Additionally the NMEA log, sent by the device can be monitored and the GPS status
+information is displayed.
+The program is written and tested on a Linux platform but may function as well on other operating systems.
 
 ## Installation and usage
-On ubuntu you need to install (at least)
+On Ubuntu you need to install (at least)
 
 ```bash
 sudo apt-get install python-qt4 pyqt4-dev-tools python-serial make
 ```
 
-Then you need to build the user interface classes
+Then build the user interface classes
 
 ```bash
 make
 ```
 
-Run the program by with
+Run the program with
 
 ```bash
 python2 camino-qtGui.py
 ```
 
-At this point your camino device needs to be connected (via USB) to your computer.
-Make sure that the device is accessible from your user account.
+At this point the camino device needs to be connected (via USB) to the computer.
+The user needs to have read/write permissions for the USB device.
 
 ## Disclaimer
 The software is provided "as is" and the author disclaims all warranties with
@@ -38,4 +39,5 @@ other tortious action, arising out of or in connection with the use or performan
 of this software.
 
 ## License
-This software is released under the terms of the GPL (3.0)
+This software is released under the terms of the GPL (3.0). It is not connected
+in any way with the AMEC (TM) corporation.
