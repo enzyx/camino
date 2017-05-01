@@ -1,6 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-#
+
+__author__ = "Manuel P. Luitz"
+__copyright__ = "Copyright 2017"
+__license__ = "GPL"
+__email__ = "manuel.luitz@gmail.com"
+
 import sys,os
 from PyQt4 import QtGui
 from PyQt4 import QtCore
