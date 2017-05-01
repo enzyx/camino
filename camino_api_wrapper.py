@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-from camino_108 import Camino
+from camino_api import Camino
 from PyQt4 import QtGui
 
 class CaminoApiWrapper(Camino):
