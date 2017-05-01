@@ -8,8 +8,8 @@ from serial import Serial
 
 from input_parser import InputParser
 import main_window_overlay
+from camino_api_wrapper import CaminoApiWrapper
 
-from camino_108 import Camino
 from settings import Settings
 import signal
 
@@ -33,9 +33,12 @@ class SerialListener(QtCore.QThread):
     def quit(self):
         self.request_stop = True
 
-class CaminoProgrammer(QtGui.QMainWindow, main_window_overlay.UiOverlayWindow):
+class CaminoProgrammer(QtGui.QMainWindow,
+                       main_window_overlay.UiOverlayWindow,
+                       CaminoApiWrapper):
     serialListener = None
     serialDevice = None
+
     def __init__(self, parent=None):
         super(CaminoProgrammer, self).__init__(parent)
         self.setupUi(self)
@@ -61,9 +64,12 @@ class CaminoProgrammer(QtGui.QMainWindow, main_window_overlay.UiOverlayWindow):
             self.serialListener.sig_disconnect.connect(self.disconnectCamino)
             self.serialListener.start()
             self.setStatusConnected(self.settings.serial_port)
+        self.getDeviceInfo()
 
     def disconnectCamino(self):
         self.setStatusDisconnected()
+        self.clearGPSViews()
+
         if self.serialListener is not None:
             self.serialListener.quit()
             self.serialListener.wait()
@@ -71,30 +77,6 @@ class CaminoProgrammer(QtGui.QMainWindow, main_window_overlay.UiOverlayWindow):
 
         if self.serialDevice is not None:
             del(self.serialDevice)
-
-    def programCamino(self):
-        print self.lineEditShipName.text()
-        print self.lineEditCallSign.text()
-        print self.lineEditMMSI.text()
-        print self.comboBoxShipType.getCurrentShipType().getNumber()
-        print self.spinBoxDimA.text(), self.spinBoxDimB.text(), \
-              self.spinBoxDimC.text(),self.spinBoxDimD.text()
-
-    def readCamino(self):
-        # self.camino.getDeviceInfo()
-        if self.serialDevice is not None:
-            self.serialDevice.write('$PTST,,,,,00016*18\r\n')
-        else:
-            msg = QtGui.QMessageBox()
-            msg.setIcon(QtGui.QMessageBox.Information)
-            msg.setText("Please connect the device!")
-            msg.setWindowTitle("Device not connected")
-            msg.setStandardButtons(QtGui.QMessageBox.Cancel)
-            retval = msg.exec_()
-            print "value of pressed message box button:", retval
-
-
-
 
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)

@@ -40,13 +40,16 @@ class QComboBoxShipType(QtGui.QComboBox):
         for shipType in self.shipTypes:
             self.addItem("{} = {}".format(shipType.getNumber(),
                                           shipType.getDescription()))
-        self.setCurrentIndex(7)
+        # Default value is Vessel-Sailing
+        self.setShipTypeByNumber(36)
 
     def setShipTypeByNumber(self, shipNumber):
         for index, shipType in enumerate(self.shipTypes):
             if shipType.getNumber() == shipNumber:
                 self.setCurrentIndex(index)
                 self.setItemData(index, QtGui.QColor("#FFFF3D"), QtCore.Qt.BackgroundRole)
+            else:
+                self.setItemData(index, QtGui.QColor("#FFFFFF"), QtCore.Qt.BackgroundRole)
 
     def getCurrentShipType(self):
         return self.shipTypes[self.currentIndex()]

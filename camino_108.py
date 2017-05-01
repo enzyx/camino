@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import serial, sys
-
+from nmea_checksum import nmeaChecksum
 # Full programming sample log (without MMSI)
 # at_1 = '$ECSSD,[callsign],[shipname],15,0,0,4,1,AI*1D\r\n'
 # at_2 = '$ECSSD,[callsign],[shipname],15,0,0,4,1,GP*02\r\n'
@@ -11,42 +11,13 @@ import serial, sys
 # at_7 = '$AIAIQ,CEK*30\r\n'
 # at_8 = '$PAMC,Q,CFG,183,0,0,*36\r\n'
 
-class Camino():
+class Camino(nmeaChecksum):
     def __init__(self, device):
-        self.serial = serial.Serial(device, 115200, timeout=5)
-
-    def calculateChecksum(self, data):
-        """
-        Take a NMEA 0183 string and compute the checksum.
-        @param data: NMEA message.  Leading ?/! and training checksum are optional
-        @type data: str
-        @return: hexidecimal value
-        @rtype: str
-
-        Checksum is calculated by xor'ing everything between ? or ! and the *
-
-        >>> checksumStr("!AIVDM,1,1,,B,35MsUdPOh8JwI:0HUwquiIFH21>i,0*09")
-        '09'
-        >>> checksumStr("AIVDM,1,1,,B,35MsUdPOh8JwI:0HUwquiIFH21>i,0")
-        '09'
-        """
-        if data[0]=='!' or data[0]=='?' or data[0]=='$': data = data[1:]
-        if data[-1]=='*': data = data[:-1]
-        if data[-3]=='*': data = data[:-3]
-        data = data.strip()
-        # FIX: rename sum to not shadown builting function
-        chksum=0
-        for c in data: chksum = chksum ^ ord(c)
-        sumHex = "{:02X}".format(chksum)
-        return sumHex
-
-    def addChecksum(self, msg):
-        chk = self.calculateChecksum(msg)
-        return msg + '*' + chk + '\r\n'
+        self.serialDevice = serial.Serial(device, 115200, timeout=5)
 
     def send(self, cmd):
         # print cmd
-        self.serial.write(cmd)
+        self.serialDevice.write(cmd)
 
     def sendWithChecksum(self, cmd):
         cmdChecksum = self.addChecksum(cmd)
@@ -54,10 +25,10 @@ class Camino():
 
     def readData(self):
         while True:
-            sys.stdout.write(self.serial.readline())
+            sys.stdout.write(self.serialDevice.readline())
 
     def parseData(self, msg):
-        if msg in self.serial.readline():
+        if msg in self.serialDevice.readline():
             return True
         else:
             return False
@@ -65,7 +36,7 @@ class Camino():
     def readLines(self,lines=2):
         ret = ""
         for i in range(lines):
-            ret += self.serial.readline()
+            ret += self.serialDevice.readline()
         return ret
 
     def readUntilMessage(self, msg):
@@ -78,8 +49,10 @@ class Camino():
         '''
         Configure basic ship data: name, callsign, (TODO: Lenght(15), GPS_position(2,2))
         '''
-        at_cmd1 = '$ECSSD,{callsign},{name},15,0,0,2,1,AI'.format(name=name, callsign=callsign)
-        at_cmd2 = '$ECSSD,{callsign},{name},15,0,0,2,1,GP'.format(name=name, callsign=callsign)
+        at_cmd1 = '$ECSSD,{callsign},{name},{dimA},{dimB},{dimC},{dimD},1,AI'.format(
+            name=name, callsign=callsign, dimA=dim[0], dimB=dim[1], dimC=dim[2], dimD=dim[3])
+        at_cmd2 = '$ECSSD,{callsign},{name},{dimA},{dimB},{dimC},{dimD},1,GP'.format(
+            name=name, callsign=callsign, dimA=dim[0], dimB=dim[1], dimC=dim[2], dimD=dim[3])
 
         self.sendWithChecksum(at_cmd1)
         self.sendWithChecksum(at_cmd2)
@@ -135,7 +108,7 @@ class Camino():
     def getDeviceInfo(self):
         ''' Read information from device '''
         self.sendWithChecksum('$PTST,,,,,00016')
-        self.readUntilMessage('[SYSTEM DATA END](21)')
+        # self.readUntilMessage('[SYSTEM DATA END](21)')
 
     def getAdditionalDeviceInfo(self):
         ''' Read information from device '''

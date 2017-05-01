@@ -39,7 +39,7 @@ class GPGGAMessage(object):
         self.hdop = float(msg[8])
         self.altitude = msg[9]
         self.altitudeUnit = msg[10]
-        self.geoidSeparation = float(msg[11])
+        self.geoidSeparation = msg[11]
         self.geoidUnit = msg[12]
         self.dgpsAge = msg[13]
         self.dgpsRefStationId = msg[14]
@@ -48,10 +48,13 @@ class GPGGAMessage(object):
         return self.fixQuality == 1 or self.fixQuality == 2
 
     def formatLatLong(self, degree, minute, direction):
-        return u"{degree:}°{minute:}'{second:}''{direction:s}".format(degree=int(degree),
+        try:
+            return u"{degree:}°{minute:}'{second:}''{direction:s}".format(degree=int(degree),
                                                            minute=int(float(minute)),
                                                            second=int(round(float(minute) % 1 * 60)),
                                                            direction=direction)
+        except:
+            return ''
 
     def getLongitudeString(self):
         return self.formatLatLong(self.longitude[0:3],

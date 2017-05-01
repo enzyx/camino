@@ -55,8 +55,17 @@ class UiOverlayWindow(main_window.Ui_MainWindow):
         # pixmap = pixmap.scaled(self.statusbar.size()*0.4, QtCore.Qt.KeepAspectRatio)
         self.label_connection_status_led.setPixmap(pixmap)
         self.label_connection_status.setText("Disonnected")
+
+    def showStatusBarMessage(self, text, timeout=1000.0):
+        self.statusbar.showMessage(text, timeout)
+
+    def clearGPSViews(self):
         self.gpsBarPlot.resetData()
         self.gpsSatellitePlot.resetData()
+        self.lineEditLatitude.clear()
+        self.lineEditLongitude.clear()
+        self.lineEditAltitude.clear()
+        self.lineEditSpeedOverGround.clear()
 
     def updateGPSData(self, gpggaMessage):
         self.lineEditLatitude.setText(gpggaMessage.getLatitudeString())
