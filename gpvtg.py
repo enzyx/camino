@@ -45,7 +45,11 @@ class GPVTGMessage(object):
         self.speed_over_ground_kmh_unit = msg[8]
 
     def formatSpeedOverGroundKmh(self):
-        return u"{sog:} km/h".format(sog=float(self.speed_over_ground_kmh))
+        try:
+            return u"{sog:} km/h".format(sog=float(self.speed_over_ground_kmh))
+        except:
+            return u"0.0 km/h"
+
 
     def formatSpeedOverGroundKnots(self):
         return u"{sog:} knots".format(sog=float(self.speed_over_ground_knots))

@@ -32,6 +32,7 @@ from nmea_checksum import nmeaChecksum
 class Camino(nmeaChecksum):
     def __init__(self, device):
         self.serialDevice = serial.Serial(device, 115200, timeout=5)
+        #self.serialDevice = serial_for_url('socket://192.168.10.22:10110')
 
     def send(self, cmd):
         # print cmd

@@ -20,7 +20,7 @@
 import serial
 import sys
 import argparse
-import camino_108
+from camino_api import Camino
 
 parser = argparse.ArgumentParser(description='Program the AMEC Camino 108 AIS Transponder.')
 parser.add_argument('-r', '--reset-mmsi', dest='reset_mmsi', action='store_true',
@@ -61,6 +61,6 @@ elif args.device_additional_info:
 
 # program MMSI
 if args.mmsi != 0:
-    camino.serial.flush()
+    camino.serialDevice.flush()
     camino.configureMMSI(args.mmsi)
     # camino.readData()

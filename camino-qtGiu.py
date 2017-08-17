@@ -25,7 +25,7 @@ __email__ = "manuel.luitz@gmail.com"
 import sys,os
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-from serial import Serial
+from serial import Serial,serial_for_url
 
 from input_parser import InputParser
 import main_window_overlay
@@ -78,6 +78,7 @@ class CaminoProgrammer(QtGui.QMainWindow,
     def connectCamino(self):
         if self.serialDevice is None:
              self.serialDevice = Serial(self.settings.serial_port, 115200, timeout=5)
+             #self.serialDevice = serial_for_url('socket://192.168.10.22:10108')
 
         if self.serialListener is None:
             self.serialListener = SerialListener(self.serialDevice)
