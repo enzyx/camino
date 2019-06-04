@@ -1,4 +1,6 @@
-## Camino gui
+## Camino Gui
+<img src="res/blue-sailing-boat-water.svg" align="right" alt="Camino GUI" width="150"/>
+
 This program provides a graphical user interface to configure and control the AIS
 transponder devices from the AMEC Camino (R) series which are typically found on
 sailing yachts.
